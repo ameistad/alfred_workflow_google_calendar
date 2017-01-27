@@ -107,6 +107,13 @@ def main(wf):
         wf.send_feedback()
         return 0
 
+    if days_from_now > 999999:
+        wf.add_item(
+            title=CALENDAR_NAME,
+            subtitle=u'Sorry, number too large')
+        wf.send_feedback()
+        return 0
+
     get_date = datetime.date.today() + datetime.timedelta(days=days_from_now)
     time_min = get_date.isoformat() + 'T00:00:00Z'
     time_max = get_date.isoformat() + 'T23:00:00Z'
